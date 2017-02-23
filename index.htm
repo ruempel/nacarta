@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>nacarta</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
+            crossorigin="anonymous"></script>
+    <script async="async" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css"
+          href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <script>
+        "use strict";
+        function setSource(src) {
+            document.getElementById("content").setAttribute("src", src);
+        }
+    </script>
+</head>
+<body>
+<header>
+    <a href="https://github.com/ruempel/nacarta" target="_blank">nacarta</a>
+    <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-default active" onclick="setSource('nacarta-chart.htm')">
+            <input type="radio" autocomplete="off" checked><i
+                class="fa fa-th-large"></i>  Relations Chart
+        </label>
+        <label class="btn btn-default" onclick="setSource('nacarta-list.htm')">
+            <input type="radio" autocomplete="off"><i
+                class="fa fa-th-list"></i>  Person List
+        </label>
+        <label class="btn btn-default" onclick="setSource('nacarta-map.htm')">
+            <input type="radio" autocomplete="off"><i
+                class="fa fa-map-marker"></i>  Locations Map
+        </label>
+    </div>
+</header>
+<iframe id="content" src="nacarta-chart.htm"></iframe>
+</body>
+</html>

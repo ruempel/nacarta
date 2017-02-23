@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>nacarta Relations Chart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
+            crossorigin="anonymous"></script>
+    <script src="js/nacarta-config.js"></script>
+    <script src="js/nacarta.js"></script>
+    <script>
+        jQuery(() => {
+            loadPersons(processDataToChart);
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+</head>
+
+<body id="chart">
+<svg id="link-canvas"></svg>
+</body>
+</html>

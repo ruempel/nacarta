@@ -1,0 +1,87 @@
+[
+  {
+    "id": "",
+    "firstnames": "James [Arthur]",
+    "name": "Baker",
+    "birth": {
+      "day": "1",
+      "month": "1",
+      "year": "1970",
+      "location": "London"
+    },
+    "occupation": "Dentist"
+  },
+  {
+    "id": "p",
+    "firstnames": "[Lisa] Patricia",
+    "name": "Baker",
+    "birthname": "Walker",
+    "birth": {
+      "day": "6",
+      "month": "9",
+      "year": "1969",
+      "location": "Dublin"
+    },
+    "occupation": "Teacher"
+  },
+  {
+    "id": "s",
+    "firstnames": "David",
+    "name": "Baker",
+    "birth": {
+      "day": "15",
+      "month": "8",
+      "year": "1994",
+      "location": "Berlin"
+    }
+  },
+  {
+    "id": "d1",
+    "firstnames": "Linda",
+    "name": "Baker",
+    "birth": {
+      "day": "1",
+      "month": "1",
+      "year": "2000",
+      "location": "Berlin"
+    },
+    "info": "lives in Hamburg"
+  },
+  {
+    "id": "d2",
+    "firstnames": "Barbara",
+    "name": "Baker",
+    "birth": {
+      "day": "2",
+      "month": "2",
+      "year": "2002",
+      "location": "Berlin"
+    }
+  },
+  {
+    "id": "f",
+    "firstnames": "Arthur [William]",
+    "name": "Baker",
+    "occupation": "Farmer",
+    "birth": {
+      "day": "5",
+      "month": "5",
+      "year": "1945",
+      "location": "London"
+    }
+  },
+  {
+    "id": "m",
+    "firstnames": "Elizabeth [Susan]",
+    "name": "Baker",
+    "birthname": "Roberts",
+    "birth": {
+      "day": "25",
+      "month": "10",
+      "year": "1947",
+      "location": "Toronto"
+    },
+    "occupation": "Singer",
+    "info": "moved to London in 1967"
+  }
+]

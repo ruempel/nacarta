@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>nacarta Person List</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7"
+            crossorigin="anonymous"></script>
+    <script async="async" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"
+            integrity="sha384-89aj/hOsfOyfD0Ll+7f2dobA15hDyiNb8m1dJ+rJuqgrGR+PVqNU8pybx4pbF3Cc"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
+          integrity="sha384-YcTv91pbdpZ4It88TK5bVHIGTuPqoSi0CpPF9UA9eRicGHEJ3lpQZajpytN4rLkp" crossorigin="anonymous"/>
+    <script src="js/nacarta-config.js"></script>
+    <script src="js/nacarta.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <script>
+        "use strict";
+        jQuery(() => {
+            loadPersons(processDataToTable);
+        });
+    </script>
+</head>
+<body>
+<section>
+    <table id="persons" class="table table-hover table-condensed">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Names</th>
+            <th>Family Name</th>
+            <th>Birth</th>
+            <th>Death</th>
+            <th>Occupation</th>
+            <th>Info</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</section>
+</body>
+</html>

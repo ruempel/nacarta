@@ -1,0 +1,63 @@
+[
+  {
+    "id": "mf",
+    "firstnames": "Victor [Charles]",
+    "name": "Roberts",
+    "birth": {
+      "day": "11",
+      "month": "11",
+      "year": "1919",
+      "location": "Toronto"
+    },
+    "death": {
+      "day": "9",
+      "month": "9",
+      "year": "19__",
+      "location": "Toronto"
+    },
+    "info": "died between 1988 and 1991"
+  },
+  {
+    "id": "mfs",
+    "firstnames": "Paul",
+    "name": "Roberts",
+    "occupation": "Carpenter",
+    "birth": {
+      "day": "19",
+      "month": "4",
+      "year": "1942",
+      "location": "Toronto"
+    }
+  },
+  {
+    "id": "mm",
+    "firstnames": "Margaret",
+    "name": "Roberts",
+    "birthname": "Taylor",
+    "occupation": "Singer",
+    "birth": {
+      "year": "1925",
+      "location": "Vancouver"
+    },
+    "death": {
+      "day": "19",
+      "month": "2",
+      "year": "2005",
+      "location": "Toronto"
+    }
+  },
+  {
+    "id": "mmp2",
+    "firstnames": "Michael",
+    "name": "Hill",
+    "occupation": "Innkeeper"
+  },
+  {
+    "id": "mmp2d",
+    "firstnames": "Amy",
+    "name": "Hill",
+    "birth": {
+      "year": "1951"
+    }
+  }
+]

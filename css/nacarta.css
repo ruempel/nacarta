@@ -1,0 +1,147 @@
+@import url(//fonts.googleapis.com/css?family=Titillium+Web:400,700);
+
+:root {
+    --dark-background-border-color: #696969;
+    --s4ndm4n-color: #8BC34A;
+    --font: "Titillium Web", sans-serif;
+}
+
+/* global font, padding and margin */
+body, html, iframe, #map-canvas {
+    font-family: var(--font);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+}
+
+button {
+    font-family: var(--font);
+}
+
+iframe#content {
+    width: 100%;
+    height: calc(100% - 44px);
+    /* TODO fix height calculation of content frame to prevent scrolling and empty space */
+}
+
+header {
+    font-size: 18px;
+    color: #e7e7e7;
+    background-color: #444;
+    height: 39px;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+header > a {
+    color: var(--s4ndm4n-color);
+}
+
+header > a:hover {
+    color: yellow;
+}
+
+header span, header a {
+    vertical-align: middle;
+}
+
+header a#logo-link {
+    display: inline-block;
+    height: 90%;
+}
+
+img#s4ndm4n-logo {
+    height: 20px;
+}
+
+.btn-group {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.btn-group .btn {
+    /*background-color: var(--s4ndm4n-color);*/
+}
+
+#chart {
+    font-size: 18px;
+}
+
+/* generation rows */
+#generations {
+    position: absolute;
+    top: 20px;
+    width: 50000px; /* large default value to be overwritten programmatically */
+}
+
+.generation {
+    position: absolute;
+}
+
+/* person boxes */
+.box {
+    margin: 3px;
+    background-color: #d7d7d7;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    --border-color: #696969;
+}
+
+.box > span, .box > div {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.linear {
+    border: 2px solid var(--dark-background-border-color);
+    border-top-width: 0;
+}
+
+.name {
+    color: white;
+    background-color: var(--dark-background-border-color);
+}
+
+.male {
+    background-color: #b8cdef;
+}
+
+.female {
+    background-color: #dbb5b2;
+}
+
+.box .optional {
+    color: #cdcdcd;
+}
+
+.optional {
+    color: #888888;
+}
+
+.id, .info {
+    font-size: 14px;
+}
+
+.event, .info {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* SVG links */
+path {
+    fill: none;
+    stroke: #222222;
+    stroke-width: 1px;
+}
+
+.link-child {
+    stroke: #2e6d2f;
+    stroke-dasharray: 6px;
+}
+
+.link-partner {
+    stroke: #878787;
+}
