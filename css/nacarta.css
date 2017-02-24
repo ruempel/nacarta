@@ -4,6 +4,7 @@
     --dark-background-border-color: #696969;
     --s4ndm4n-color: #8BC34A;
     --font: "Titillium Web", sans-serif;
+    --content-offset: 39px;
 }
 
 /* global font, padding and margin */
@@ -22,15 +23,17 @@ button {
 
 iframe#content {
     width: 100%;
-    height: calc(100% - 44px);
-    /* TODO fix height calculation of content frame to prevent scrolling and empty space */
+    height: calc(100% - var(--content-offset));
+    position: absolute;
+    top: var(--content-offset);
+    left: 0;
 }
 
 header {
     font-size: 18px;
     color: #e7e7e7;
     background-color: #444;
-    height: 39px;
+    height: var(--content-offset);
     text-align: center;
     padding-top: 2px;
     padding-bottom: 2px;
