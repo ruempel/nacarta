@@ -5,6 +5,8 @@
 * **Person List**: The list view provides a table with sortable columns. This is especially helpful for identifying missing data fields. Each line represents a person. They can be filtered by full-text search.
 * **Locations Map**: Birth and death locations are visualized in a map with one marker per location. Geographical coordinates are determined from location names utilizing the Google Maps Geocoding API. 
 
+![Views of nacarta showing a fictional example family](images/nacarta-views-screenshot.png)
+
 # How to Use
 **nacarta** comes as a static Web application. Thus, an HTTP server and a Web browser are required. Alternatively, you can also use a built-in Web server of your favorite Web IDE. Point your Web browser to `index.html`. It will provide access to the views with the relations chart loaded per default. A live demonstration with the data of a fictional example family runs at: https://andreasruempel.de/nacarta
 
