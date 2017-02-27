@@ -3,7 +3,7 @@
 
 * **Relations Chart**: In a huge (well, this depends on the size of your database) chart with all family members, each person is represented by a box. The boxes are interconnected to the `ego` reference person. Visual features, such as line styles, color coding of boxes, box border styles, facilitate identifying a variety of facets characterizing individual and aggregated data (sex distribution, linearity, generations count and cardinality).
 * **Person List**: The list view provides a table with sortable columns. This is especially helpful for identifying missing data fields. Each line represents a person. They can be filtered by full-text search.
-* **Locations Map**: Birth and death locations are visualized in a map with one marker per location. Geographical coordinates are determined from location names utilizing the Google Maps Geocoding API. 
+* **Locations Map**: Birth and death locations are visualized in a map with one marker per location. Each marker has a tooltip, which is activated on clicking. Geographical coordinates are determined from location names utilizing the Google Maps Geocoding API. 
 
 ![Views of nacarta showing a fictional example family](images/nacarta-views-screenshot.png)
 
