@@ -17,7 +17,9 @@ Each person is uniquely identified by an id, which contains information on how t
 
 The family members target group focuses on persons belonging to `ego`'s bloodline (aka. being the n-th generation children of `ego`'s m-th generation ancestors). However, partners (spouses) of each relative may be addressed by adding a `p` (or `p2` or `p3`) to the id. This is especially relevant to distinguish half-siblings, which are the offspring of different partners. Thus, the relation to any of possible relatives may be modeled using combinations of `f`, `m`, `s`, `d`, `p` and numeric indices applicable to `s`, `d` and `p`. Note, that there must not be any gap in the "tree of inheritance". Specifying `mmfs2d` without having `mmf` or `mmfs2` in your database does not work properly.
 
-A more complex example: `mfmp2ssd` is YOUR mother's father's mother's son's son's daughter, while HER father's father's father was the second spouse of YOUR mother's father's mother. More briefly, YOU and HER are "second cousins" of each other, since you have the same great-grandmother (but different great-grandfathers). Find a more detailed explanation on kinship terminology at: https://en.wikipedia.org/wiki/Kinship
+A more complex example: `mfmp2ssd` is YOUR mother's father's mother's son's son's daughter, while HER father's father's father was the second spouse of YOUR mother's father's mother. More briefly, YOU and HER are "second cousins" of each other, since you have the same great-grandmother (but different great-grandfathers). Thus, it is a combined ascending and descending [genealogical numbering system](https://en.wikipedia.org/wiki/Genealogical_numbering_systems).
+
+The system of identifiers and the corresponding chart rendering imply a few limitations. Each person can be connected to `ego` via one path only, i. e. [pedigree collapse](https://en.wikipedia.org/wiki/Pedigree_collapse) is not supported. Beyond this, each person can only have one father and one mother.
 
 # Shapes, Colors and Names
 From the representation of boxes and connection lines within the relations view, essential properties can be derived:
