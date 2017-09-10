@@ -92,8 +92,7 @@ function makeIDComparable(id) {
     let cid = id;
     if (cid === "") cid = "e";
     // add index 1 to non-indexed sons, daughters and spouses
-    cid = cid.replace(/([sdp])$/g, "$11");
-    cid = cid.replace(/([sdp])(\D)/g, "$11$2");
+    cid = cid.replace(/([sdp])(?!\d)/g, "$11");
 
     // target order: fsepdm
     cid = cid.replace(/f/g, "a");
