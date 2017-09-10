@@ -214,7 +214,7 @@ function fillBox(box, person) {
     firstnames = firstnames.replace(/\[([^\]]+)]/g, "<span class='optional'>$1</span>");
     jQuery("<div/>").addClass("name").html(firstnames + " " + person.name).appendTo(box);
     let birthnameAndID = (person.birthname === undefined ? "" : "*&nbsp;" + person.birthname + " · ");
-    birthnameAndID += (person.id == "" ? "ego" : person.id); // replace ego id
+    birthnameAndID += (person.id === "" ? "ego" : person.id); // replace ego id
     jQuery("<div/>").addClass("id").html(birthnameAndID).appendTo(box);
 
     box.addClass(determineSex(person.id)); // handle box color based on sex
@@ -280,11 +280,11 @@ function processDataToTable() {
 function determineSex(id) {
     let sex = ""; // default: neither male nor female aka. partner
     id = id.replace(/\d*/g, ""); // remove indices from id
-    if (id.endsWith("f") || id.endsWith("s") || (id == "" && egoMale)) {
+    if (id.endsWith("f") || id.endsWith("s") || (id === "" && egoMale)) {
         sex = "male";
         statistics.numberOfPersonsMale++;
     }
-    if (id.endsWith("m") || id.endsWith("d") || (id == "" && !egoMale)) {
+    if (id.endsWith("m") || id.endsWith("d") || (id === "" && !egoMale)) {
         sex = "female";
         statistics.numberOfPersonsFemale++;
     }
