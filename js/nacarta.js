@@ -217,6 +217,7 @@ function fillBox(box, person) {
     jQuery("<div/>").addClass("id").html(birthnameAndID).appendTo(box);
 
     box.addClass(determineSex(person.id)); // handle box color based on sex
+    box.addClass(determineAliveStatus(person));
 
     // handle events
     let birth = stringifyEvent(person.birth);
@@ -288,6 +289,20 @@ function determineSex(id) {
         statistics.numberOfPersonsFemale++;
     }
     return sex;
+}
+
+/**
+ * Determine whether a person is alive or dead based on a present or missing death event.
+ *
+ * @param {Person} person person to determine the alive status of
+ * @returns {string} "alive" or "dead"
+ */
+function determineAliveStatus(person) {
+    let status = "alive";
+    if (person.death !== undefined) {
+        status = "dead";
+    }
+    return status;
 }
 
 /**
