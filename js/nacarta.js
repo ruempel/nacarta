@@ -35,6 +35,7 @@ let statistics = {numberOfPersonsMale: 0, numberOfPersonsFemale: 0, location: au
 
 /**
  * Load persons from a number of JSON files and initiate processing and rendering.
+ *
  * @param {loadPersonsCallback} callback function to execute as soon as all persons are loaded
  */
 function loadPersons(callback) {
@@ -44,7 +45,21 @@ function loadPersons(callback) {
     Promise.all(promises).then(callback);
 }
 
+/**
+ * Filter persons such that the result set contains only persons leading to the filter person
+ * and persons derived from the filter person.
+ */
+function filterPersons() {
+    let personsFiltered = [];
+    for (let person of persons) {
+        if (person.id.startsWith(filterIdentifier) || filterIdentifier.startsWith(person.id))
+            personsFiltered.push(person);
+    }
+    persons = personsFiltered;
+}
+
 function processDataToChart() {
+    filterPersons();
     statistics.numberOfPersonsTotal = persons.length;
     for (let person of persons) {
         let generation = getGeneration(person);

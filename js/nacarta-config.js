@@ -7,6 +7,7 @@
  */
 let basePath = "data/"; // prefix for files
 let files = ["example-core", "example-extension"]; // array of data files (without .json extension)
+let filterIdentifier = ""; // person identifier of a person serving as a filter
 let egoMale = true; // set to false, if ego is a woman
 let mapsKey = ""; // Google Maps JS API key
 let authorName = "Author unknown"; // put in your name here
