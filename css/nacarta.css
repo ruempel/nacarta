@@ -140,11 +140,15 @@ path {
     stroke-width: 1px;
 }
 
+.link-parent {
+    stroke-width: 2px;
+}
+
 .link-child {
-    stroke: #2e6d2f;
-    stroke-dasharray: 6px;
+    stroke: #555;
+    stroke-dasharray: 2px;
 }
 
 .link-partner {
-    stroke: #878787;
+    stroke: #777;
 }
