@@ -7,13 +7,17 @@
     <script src="//code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f"
             crossorigin="anonymous"></script>
-    <script async="async" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
-          integrity="sha384-VY3F8aCQDLImi4L+tPX4XjtiJwXDwwyXNbkH7SHts0Jlo85t1R15MlXVBKLNx+dj" crossorigin="anonymous">
+          integrity="sha384-VY3F8aCQDLImi4L+tPX4XjtiJwXDwwyXNbkH7SHts0Jlo85t1R15MlXVBKLNx+dj" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
     <script>
         "use strict";
@@ -26,19 +30,16 @@
 <body>
 <header>
     <a href="https://github.com/ruempel/nacarta" target="_blank">nacarta</a>
-    <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-default active" onclick="setSource('nacarta-chart.html')">
-            <input type="radio" autocomplete="off" checked><i
+    <div class="btn-group btn-group-sm" role="group" aria-label="Switch view buttons">
+        <button type="button" class="btn btn-secondary" onclick="setSource('nacarta-chart.html')"><i
                 class="fas fa-th-large"></i>  Relations Chart
-        </label>
-        <label class="btn btn-default" onclick="setSource('nacarta-list.html')">
-            <input type="radio" autocomplete="off"><i
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="setSource('nacarta-list.html')"><i
                 class="fas fa-th-list"></i>  Person List
-        </label>
-        <label class="btn btn-default" onclick="setSource('nacarta-map.html')">
-            <input type="radio" autocomplete="off"><i
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="setSource('nacarta-map.html')"><i
                 class="fas fa-map-marker"></i>  Locations Map
-        </label>
+        </button>
     </div>
 </header>
 <iframe id="content" src="nacarta-chart.html"></iframe>
