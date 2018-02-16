@@ -5,10 +5,10 @@
  * @author Andreas Rümpel <ruempel@gmail.com>
  * @see https://developers.google.com/maps/documentation/javascript/get-api-key
  */
-let basePath = "data/"; // prefix for files
-let files = ["example-core", "example-extension"]; // array of data files (without .json extension)
-let filterIdentifier = ""; // person identifier of a person serving as a filter
-let egoMale = true; // set to false, if ego is a woman
-let mapsKey = ""; // Google Maps JS API key
-let authorName = "Author unknown"; // put in your name here
-let authorLocation = ""; // put in where you live
+const basePath = "data/"; // prefix for files
+const files = ["example-core", "example-extension"]; // array of data files (without .json extension)
+const filterIdentifier = ""; // person identifier of a person serving as a filter
+const egoMale = true; // set to false, if ego is a woman
+const mapsKey = ""; // Google Maps JS API key
+const authorName = "Author unknown"; // put in your name here
+const authorLocation = ""; // put in where you live
