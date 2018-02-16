@@ -39,8 +39,8 @@ let statistics = {numberOfPersonsMale: 0, numberOfPersonsFemale: 0, location: au
  * @param {loadPersonsCallback} callback function to execute as soon as all persons are loaded
  */
 function loadPersons(callback) {
-    let promises = [];
-    for (let file of files)
+    const promises = [];
+    for (const file of files)
         promises.push(jQuery.getJSON(basePath + file + ".json", data => persons.push(...data)));
     Promise.all(promises).then(callback);
 }
@@ -50,8 +50,8 @@ function loadPersons(callback) {
  * and persons derived from the filter person.
  */
 function filterPersons() {
-    let personsFiltered = [];
-    for (let person of persons) {
+    const personsFiltered = [];
+    for (const person of persons) {
         if (person.id.startsWith(filterIdentifier) || filterIdentifier.startsWith(person.id))
             personsFiltered.push(person);
     }
@@ -61,8 +61,8 @@ function filterPersons() {
 function processDataToChart() {
     filterPersons();
     statistics.numberOfPersonsTotal = persons.length;
-    for (let person of persons) {
-        let generation = getGeneration(person);
+    for (const person of persons) {
+        const generation = getGeneration(person);
         generations.get(generation) || generations.set(generation, []); // generation exists?
         generations.get(generation).push(person); // add person to proper generation
         if (person.id === "") ego = person;
@@ -70,7 +70,7 @@ function processDataToChart() {
     statistics.numberOfGenerations = generations.size;
 
     // sort persons within each generation
-    for (let [, persons] of generations)
+    for (const [, persons] of generations)
         persons.sort(comparePersonByID);
 
     setParentLinks();
@@ -144,9 +144,9 @@ function getGeneration(person) {
  * @param {Person} [person] family member to be augmented with connections
  */
 function setParentLinks(person = ego) {
-    let parentCandidates = generations.get(getGeneration(person) + 1);
+    const parentCandidates = generations.get(getGeneration(person) + 1);
     if (parentCandidates === undefined) return; // no parent candidates to evaluate
-    for (let parentCandidate of parentCandidates) {
+    for (const parentCandidate of parentCandidates) {
         if (parentCandidate.id === person.id + "f") {
             person.father = parentCandidate;
             setParentLinks(parentCandidate);
@@ -162,14 +162,14 @@ function setParentLinks(person = ego) {
  * Connect person objects with child and partner links.
  */
 function setChildAndPartnerLinks() {
-    for (let [, persons] of generations)
-        for (let person of persons) {
+    for (const [, persons] of generations)
+        for (const person of persons) {
             // handle children
-            let childCandidates = generations.get(getGeneration(person) - 1);
+            const childCandidates = generations.get(getGeneration(person) - 1);
             if (childCandidates !== undefined) {
-                let children = [];
-                for (let childCandidate of childCandidates) {
-                    let re = new RegExp("^" + person.id + "(p\\d*)?[sd]\\d*$", "g");
+                const children = [];
+                for (const childCandidate of childCandidates) {
+                    const re = new RegExp("^" + person.id + "(p\\d*)?[sd]\\d*$", "g");
                     if (re.test(childCandidate.id))
                         children.push(childCandidate);
                 }
@@ -177,10 +177,10 @@ function setChildAndPartnerLinks() {
             }
 
             // handle partners
-            let partnerCandidates = generations.get(getGeneration(person));
-            let partners = [];
-            for (let partnerCandidate of partnerCandidates) {
-                let re = new RegExp("^" + person.id + "p\\d*$", "g");
+            const partnerCandidates = generations.get(getGeneration(person));
+            const partners = [];
+            for (const partnerCandidate of partnerCandidates) {
+                const re = new RegExp("^" + person.id + "p\\d*$", "g");
                 if (re.test(partnerCandidate.id)) {
                     partners.push(partnerCandidate);
                 }
@@ -202,14 +202,14 @@ function createGlobalContainers() {
  */
 function createRowsAndBoxes() {
     statistics.numberOfOldestGeneration = Math.max(...Array.from(generations.keys()));
-    for (let [generation, persons] of generations) {
-        let row = jQuery("<div>").addClass("generation").attr("id", "generation-" + generation);
-        let topOffset = globalYOffset + (statistics.numberOfOldestGeneration - generation) * generationsOffset;
+    for (const [generation, persons] of generations) {
+        const row = jQuery("<div>").addClass("generation").attr("id", "generation-" + generation);
+        const topOffset = globalYOffset + (statistics.numberOfOldestGeneration - generation) * generationsOffset;
         row.css("top", topOffset + "px");
         row.appendTo("#generations");
 
-        for (let person of persons) {
-            let box = jQuery("<div>").addClass("box").attr("id", "box-" + person.id);
+        for (const person of persons) {
+            const box = jQuery("<div>").addClass("box").attr("id", "box-" + person.id);
             fillBox(box, person);
             box.appendTo(row);
         }
@@ -223,6 +223,7 @@ function createRowsAndBoxes() {
  * @param {Person} person family member
  */
 function fillBox(box, person) {
+    box.data("person", person); // save reference to person in box
     // handle names
     let firstnames = person.firstnames;
     firstnames = firstnames.replace(/\[([^\]]+)]/g, "<span class='optional'>$1</span>");
@@ -235,8 +236,8 @@ function fillBox(box, person) {
     box.addClass(determineAliveStatus(person));
 
     // handle events
-    let birth = stringifyEvent(person.birth);
-    let death = stringifyEvent(person.death);
+    const birth = stringifyEvent(person.birth);
+    const death = stringifyEvent(person.death);
     if (birth)
         jQuery("<div/>").addClass("event").text("* " + birth).appendTo(box);
     if (death)
@@ -246,7 +247,7 @@ function fillBox(box, person) {
     let occupation = person.occupation;
     if (occupation)
         jQuery("<div/>").addClass("info").text(occupation).appendTo(box);
-    let info = person.info;
+    const info = person.info;
     if (info)
         jQuery("<div/>").addClass("info").text(info).appendTo(box);
 
@@ -258,9 +259,9 @@ function fillBox(box, person) {
  * Render all persons into a table with one line for each person.
  */
 function processDataToTable() {
-    for (let item of persons) {
+    for (const item of persons) {
         // handle id and row color
-        let row = jQuery("<tr/>").appendTo("#persons tbody").addClass(determineSex(item.id));
+        const row = jQuery("<tr/>").appendTo("#persons tbody").addClass(determineSex(item.id));
         jQuery(".male").addClass("info");
         jQuery(".female").addClass("danger");
 
@@ -313,11 +314,8 @@ function determineSex(id) {
  * @returns {string} "alive" or "dead"
  */
 function determineAliveStatus(person) {
-    let status = "alive";
-    if (person.death !== undefined) {
-        status = "dead";
-    }
-    return status;
+    if (person.death !== undefined) return "dead";
+    return "alive";
 }
 
 /**
@@ -334,7 +332,7 @@ function stringifyEvent(event) {
     if (event === undefined) return null;
     let eventString = (event.year || "____");
     eventString += "-" + addLeadingZero(event.month) + "-" + addLeadingZero(event.day);
-    let location = event.location;
+    const location = event.location;
     if (location !== undefined)
         eventString += " · " + location;
     return eventString;
@@ -361,27 +359,27 @@ function isLinear(person) {
  * Center whole diagram by animating x offset for each row.
  */
 function centerGenerations() {
-    let globalOffset = 0;
-    let generationWidths = new Map();
-    for (let [generation,] of generations) {
+    const globalOffset = 0;
+    const generationWidths = new Map();
+    for (const [generation,] of generations) {
         generationWidths.set(generation, jQuery("#generation-" + generation).outerWidth());
     }
-    let generationWidthMax = Math.max(...Array.from(generationWidths.values())); // compute maximum width
-    let containerStyle = {
+    const generationWidthMax = Math.max(...Array.from(generationWidths.values())); // compute maximum width
+    const containerStyle = {
         height: generations.size * generationsOffset + "px",
         width: Math.floor(generationWidthMax) + 800 + "px"
     };
     jQuery("#generations, #link-canvas").css(containerStyle);
 
-    let promises = [];
-    for (let [generation,] of generations) {
-        let offset = (generationWidthMax - generationWidths.get(generation)) / 2 + globalOffset;
-        let row = jQuery("#generation-" + generation);
+    const promises = [];
+    for (const [generation,] of generations) {
+        const offset = (generationWidthMax - generationWidths.get(generation)) / 2 + globalOffset;
+        const row = jQuery("#generation-" + generation);
         promises.push(row.animate({"marginLeft": "+=" + offset}).promise());
     }
 
     Promise.all(promises).then(() => { // wait for shifting rows
-        renderParentLinks();
+        renderParentLinksNaive();
         renderChildAndPartnerLinks();
         jQuery(linkCanvas).html(jQuery(linkCanvas).html()); // TODO better do it like: http://stackoverflow.com/a/3642265
     });
@@ -403,6 +401,18 @@ function renderParentLinks(person = ego) {
     }
 }
 
+function renderParentLinksNaive() {
+    for (const [, persons] of generations)
+        for (const person of persons) {
+            if (person.father) {
+                drawPath(jQuery("#box-" + person.father.id), jQuery("#box-" + person.id));
+            }
+            if (person.mother) {
+                drawPath(jQuery("#box-" + person.mother.id), jQuery("#box-" + person.id));
+            }
+        }
+}
+
 /**
  * Draw SVG curve.
  *
@@ -413,34 +423,35 @@ function renderParentLinks(person = ego) {
  * @see renderChildAndPartnerLinks
  */
 function drawPath(upper, lower, style = "link-parent") {
-    let verticalIndent = 100;
-
     // set start coordinates to middle bottom of upper
-    let x0 = Math.round(upper.offset().left + (upper.outerWidth() / 2));
-    let y0 = Math.round(upper.offset().top + upper.outerHeight());
+    const x0 = Math.round(upper.offset().left + (upper.outerWidth() / 2));
+    const y0 = Math.round(upper.offset().top + upper.outerHeight());
 
     // set end coordinates to middle top of lower
-    let x1 = Math.round(lower.offset().left + (lower.outerWidth() / 2));
-    let y1 = Math.round(lower.offset().top);
+    const x1 = Math.round(lower.offset().left + (lower.outerWidth() / 2));
+    const y1 = Math.round(lower.offset().top);
 
-    // draw curve as SVG path
-    let path = "M" + x0 + "," + y0 + " C" + x0 + "," + (y0 + verticalIndent);
-    path += " " + x1 + "," + (y1 - verticalIndent) + " " + x1 + "," + y1;
-    jQuery("<path/>").addClass(style).attr("d", path).appendTo(linkCanvas);
+    // draw connector line as SVG path
+    jQuery("<path/>").addClass(style).attr("d", getCubicPath(x0, x1, y0, y1)).appendTo(linkCanvas);
+}
+
+function getCubicPath(x0, x1, y0, y1) {
+    const offset = 90; // control point vertical offset
+    return `M${x0},${y0} C${x0},${y0 + offset} ${x1},${y1 - offset} ${x1},${y1}`;
 }
 
 /**
  * Render links to all children and partners.
  */
 function renderChildAndPartnerLinks() {
-    for (let [, persons] of generations)
-        for (let person of persons) {
-            let personBox = jQuery("#box-" + person.id);
+    for (const [, persons] of generations)
+        for (const person of persons) {
+            const personBox = jQuery("#box-" + person.id);
             if (person.children)
-                for (let child of person.children)
+                for (const child of person.children)
                     drawPath(personBox, jQuery("#box-" + child.id), "link-child");
             if (person.partners)
-                for (let partner of person.partners)
+                for (const partner of person.partners)
                     drawPartnerPath(personBox, jQuery("#box-" + partner.id));
         }
 }
@@ -453,13 +464,12 @@ function renderChildAndPartnerLinks() {
  * @see renderChildAndPartnerLinks
  */
 function drawPartnerPath(person, partner) {
-    let x0 = Math.round(person.offset().left + (person.outerWidth() / 2)) + 20;
-    let x1 = Math.round(partner.offset().left + (partner.outerWidth() / 2)) - 20;
-    let y = Math.round(person.offset().top);
+    const x0 = Math.round(person.offset().left + (person.outerWidth() / 2)) + 20;
+    const x1 = Math.round(partner.offset().left + (partner.outerWidth() / 2)) - 20;
+    const y = Math.round(person.offset().top);
 
     // draw curve as SVG path, https://www.w3.org/TR/SVG/paths.html
-    let verticalOffset = 6;
-    let path = "M" + x0 + "," + y + " v-" + verticalOffset;
-    path += " q" + (x1 - x0) / 2 + ",-" + verticalOffset * 4 + " " + (x1 - x0) + ",0 v" + verticalOffset;
+    const offset = 3;
+    const path = `M ${x0},${y} v-${offset} q${(x1 - x0) / 2},-${offset * 4} ${x1 - x0},0 v${offset}`;
     jQuery("<path/>").addClass("link-partner").attr("d", path).appendTo(linkCanvas);
 }
