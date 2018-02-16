@@ -262,8 +262,8 @@ function processDataToTable() {
     for (const item of persons) {
         // handle id and row color
         const row = jQuery("<tr/>").appendTo("#persons tbody").addClass(determineSex(item.id));
-        jQuery(".male").addClass("info");
-        jQuery(".female").addClass("danger");
+        jQuery(".male").addClass("table-primary");
+        jQuery(".female").addClass("table-danger");
 
         // append id
         jQuery("<td/>").appendTo(row).text(item.id);
