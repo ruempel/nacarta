@@ -43,7 +43,8 @@ function loadPersons() {
 
         // try to get geo-coded address from cache
         let locationsUncached = [];
-        for (let location of locationsUnique) {
+        for (const locationRaw of locationsUnique) {
+            const location = locationRaw.trim().replace(/\?/, "");
             if (geocodeCache.hasOwnProperty(location)) {
                 let latlng = new google.maps.LatLng(geocodeCache[location].lat, geocodeCache[location].lng);
                 handleLocation(latlng, location);
