@@ -228,7 +228,7 @@ function fillBox(box, person) {
     let firstnames = person.firstnames;
     firstnames = firstnames.replace(/\[([^\]]+)]/g, "<span class='optional'>$1</span>");
     jQuery("<div/>").addClass("name").html(firstnames + " " + person.name).appendTo(box);
-    let birthnameAndID = (person.birthname === undefined ? "" : "*&nbsp;" + person.birthname + " · ");
+    let birthnameAndID = (person.birthname === undefined ? "" : "∗&nbsp;" + person.birthname + " · ");
     birthnameAndID += (person.id === "" ? "ego" : person.id); // replace ego id
     jQuery("<div/>").addClass("id").html(birthnameAndID).appendTo(box);
 
@@ -238,10 +238,16 @@ function fillBox(box, person) {
     // handle events
     const birth = stringifyEvent(person.birth);
     const death = stringifyEvent(person.death);
+    const marriage = stringifyEvent(person.marriage);
+    const baptism = stringifyEvent(person.baptism);
     if (birth)
-        jQuery("<div/>").addClass("event").text("* " + birth).appendTo(box);
+        jQuery("<div/>").addClass("event").text("∗ " + birth).appendTo(box);
     if (death)
-        jQuery("<div/>").addClass("event").text("† " + death).appendTo(box);
+        jQuery("<div/>").addClass("event").text("✝ " + death).appendTo(box);
+    if (marriage)
+        jQuery("<div/>").addClass("event").text("⚭ " + marriage).appendTo(box);
+    if (baptism)
+        jQuery("<div/>").addClass("event").text("≈ " + baptism).appendTo(box);
 
     // handle occupation and info
     let occupation = person.occupation;
