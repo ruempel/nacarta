@@ -10,13 +10,13 @@ let map, bb, persons = [], locations = [];
  * Callback for Google Maps to initialize map.
  */
 function initMap() {
-    let mapOptions = {
+    const mapOptions = {
         zoom: 8,
         center: new google.maps.LatLng(51.051, 13.735),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    let canvas = jQuery("<div>").attr({id: "map-canvas"}).appendTo("body");
+    const canvas = jQuery("<div>").attr({id: "map-canvas"}).appendTo("body");
     map = new google.maps.Map(canvas.get(0), mapOptions);
     bb = new google.maps.LatLngBounds();
 
@@ -27,42 +27,42 @@ function initMap() {
  * Collect locations of persons database.
  */
 function loadPersons() {
-    let promises = [];
-    for (let file of files)
+    const promises = [];
+    for (const file of files)
         promises.push(jQuery.getJSON(basePath + file + ".json", data => persons.push(...data)));
 
     Promise.all(promises).then(() => { // wait for all JSON files processed
-        for (let person of persons) {
+        for (const person of persons) {
             if (person.birth && person.birth.location) locations.push(person.birth.location);
             if (person.death && person.death.location) locations.push(person.death.location);
             // TODO make birth and death locations selectable individually
         }
 
-        let locationsUnique = Array.from(new Set(locations));
+        const locationsUnique = Array.from(new Set(locations));
         console.info(locationsUnique);
 
         // try to get geo-coded address from cache
-        let locationsUncached = [];
+        const locationsUncached = [];
         for (const locationRaw of locationsUnique) {
             const location = locationRaw.trim().replace(/\?/, "");
             if (geocodeCache.hasOwnProperty(location)) {
-                let latlng = new google.maps.LatLng(geocodeCache[location].lat, geocodeCache[location].lng);
+                const latlng = new google.maps.LatLng(geocodeCache[location].lat, geocodeCache[location].lng);
                 handleLocation(latlng, location);
             }
             else locationsUncached.push(location);
         }
 
         // get remaining locations live and log them to add to cache
-        let interval = window.setInterval(function () {
+        const interval = window.setInterval(function () {
             if (locationsUncached.length < 1) {
                 window.clearInterval(interval);
                 return;
             }
 
-            let location = locationsUncached.pop();
+            const location = locationsUncached.pop();
             new google.maps.Geocoder().geocode({"address": location}, (results, status) => {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    let coordinates = results[0].geometry.location;
+                if (status === google.maps.GeocoderStatus.OK) {
+                    const coordinates = results[0].geometry.location;
                     console.info('ADD THIS LINE TO geocode-cache.js: "' + location + '": ' + JSON.stringify(coordinates) + ",");
                     handleLocation(coordinates, location);
                 } else {
@@ -80,7 +80,7 @@ function loadPersons() {
  * @param {string} name location name
  */
 function handleLocation(latlng, name) {
-    let marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
         map: map,
         position: latlng
     });
@@ -99,6 +99,6 @@ function handleLocation(latlng, name) {
  * @see nacarta-config.js
  */
 jQuery(() => {
-    let src = "https://maps.google.com/maps/api/js?key=" + mapsKey + "&callback=initMap";
+    const src = "https://maps.google.com/maps/api/js?key=" + mapsKey + "&callback=initMap";
     jQuery("<script/>").attr({src: src, async: "async"}).appendTo("head");
 });
