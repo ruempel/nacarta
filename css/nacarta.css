@@ -4,7 +4,7 @@
     --dark-background-border-color: #696969;
     --s4ndm4n-color: #8BC34A;
     --font: "Titillium Web", sans-serif;
-    --content-offset: 39px;
+    --content-offset: 2.5rem;
 }
 
 /* global font, padding and margin */
@@ -15,6 +15,10 @@ body, html, iframe, #map-canvas {
     margin: 0;
     padding: 0;
     border-width: 0;
+}
+
+html {
+    font-size: 16px; /* ensure rem base value */
 }
 
 button {
@@ -30,53 +34,19 @@ iframe#content {
 }
 
 header {
-    font-size: 18px;
-    color: #e7e7e7;
-    background-color: #444;
+    background-color: #393939;
     height: var(--content-offset);
     text-align: center;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
-header > a {
-    color: var(--s4ndm4n-color);
-}
-
-header > a:hover {
-    color: yellow;
-}
-
-header span, header a {
-    vertical-align: middle;
-}
-
-header a#logo-link {
-    display: inline-block;
-    height: 90%;
-}
-
-img#s4ndm4n-logo {
-    height: 20px;
-}
-
-.btn-group {
-    margin-left: 6px;
-    margin-right: 6px;
-}
-
-.btn-group .btn {
-    /*background-color: var(--s4ndm4n-color);*/
 }
 
 #chart {
-    font-size: 18px;
+    font-size: 1.1rem;
 }
 
 /* generation rows */
 #generations {
     position: absolute;
-    top: 20px;
+    top: 1.25rem;
     width: 50000px; /* large default value to be overwritten programmatically */
 }
 
@@ -126,7 +96,7 @@ img#s4ndm4n-logo {
 }
 
 .id, .info {
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 .event, .info {
