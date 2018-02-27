@@ -366,21 +366,22 @@ function isLinear(person) {
  * Center whole diagram by animating x offset for each row.
  */
 function centerGenerations() {
-    const globalOffset = 0;
     const generationWidths = new Map();
     for (const [generation,] of generations) {
         generationWidths.set(generation, jQuery("#generation-" + generation).outerWidth());
     }
     const generationWidthMax = Math.max(...Array.from(generationWidths.values())); // compute maximum width
+    const padding = Math.max(jQuery(window).width() - generationWidthMax, 0); // center if chart narrower than viewport
+    // TODO recompute padding and animate again, if viewport width changes
     const containerStyle = {
         height: generations.size * generationsOffset + "px",
-        width: Math.floor(generationWidthMax) + 800 + "px"
+        width: Math.floor(generationWidthMax) + padding + 10 + "px"
     };
     jQuery("#generations, #link-canvas").css(containerStyle);
 
     const promises = [];
     for (const [generation,] of generations) {
-        const offset = (generationWidthMax - generationWidths.get(generation)) / 2 + globalOffset;
+        const offset = (generationWidthMax - generationWidths.get(generation)) / 2 + padding / 2;
         const row = jQuery("#generation-" + generation);
         promises.push(row.animate({"marginLeft": "+=" + offset}).promise());
     }
