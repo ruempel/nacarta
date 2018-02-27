@@ -290,7 +290,8 @@ function processDataToTable() {
         jQuery("<td/>").appendTo(row).text(item.occupation);
         jQuery("<td/>").appendTo(row).text(item.info);
     }
-    jQuery('#persons').DataTable({paging: false});
+    jQuery("#persons").DataTable({paging: false});
+    jQuery("#persons_filter").find("input").addClass("form-control form-control-sm");
 }
 
 /**
