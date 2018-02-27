@@ -29,19 +29,21 @@
 <body>
 <header class="py-1">
     <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Switch view buttons">
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-chart.html')"><i
-                class="fas fa-th-large"></i>  Relations Chart
+        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-chart.html')">
+            <i class="fas fa-th-large mr-2"></i>Relations Chart
         </button>
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-list.html')"><i
-                class="fas fa-th-list"></i>  Person List
+        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-list.html')">
+            <i class="fas fa-th-list mr-2"></i>Person List
         </button>
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-map.html')"><i
-                class="fas fa-map-marker"></i>  Locations Map
+        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-map.html')">
+            <i class="fas fa-map-marker mr-2"></i>Locations Map
         </button>
     </div>
-    <a role="button" class="btn btn-outline-secondary btn-sm" href="https://github.com/ruempel/nacarta"><i
-            class="fab fa-github"></i>  nacarta on
-        GitHub</a>
+    <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Show links">
+        <!-- add buttons for your brand here -->
+        <a role="button" class="btn btn-outline-secondary" href="https://github.com/ruempel/nacarta">
+            <i class="fab fa-github mr-2"></i>nacarta on GitHub</a>
+    </div>
 </header>
 <iframe id="content" src="nacarta-chart.html"></iframe>
 </body>
