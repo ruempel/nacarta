@@ -20,29 +20,51 @@
     <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
     <script>
         "use strict";
+        jQuery(() => {
+            for (const target of ["chart", "list", "map"]) { // enable button links
+                jQuery(`#button-${target}`).click(() => {
+                    document.getElementById("content").setAttribute("src", `nacarta-${target}.html`);
+                });
+            }
 
-        function setSource(src) {
-            document.getElementById("content").setAttribute("src", src);
-        }
+            function adaptLayout() { // trim button texts on viewports with low width
+                if (jQuery(window).width() < 800) {
+                    jQuery("#button-chart").find("span").html("Chart");
+                    jQuery("#button-list").find("span").html("List");
+                    jQuery("#button-map").find("span").html("Map");
+                    jQuery("#button-github").find("span").html("nacarta");
+                } else {
+                    jQuery("#button-chart").find("span").html("Relations Chart");
+                    jQuery("#button-list").find("span").html("Person List");
+                    jQuery("#button-map").find("span").html("Locations Map");
+                    jQuery("#button-github").find("span").html("nacarta on GitHub");
+                }
+            }
+
+            jQuery(window).resize(adaptLayout); // register layout adaptation listener
+            adaptLayout();
+        });
+
+
     </script>
 </head>
 <body>
 <header class="py-1">
     <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Switch view buttons">
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-chart.html')">
-            <i class="fas fa-th-large mr-2"></i>Relations Chart
+        <button type="button" class="btn btn-outline-light" id="button-chart">
+            <i class="fas fa-th-large mr-2"></i><span>Relations Chart</span>
         </button>
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-list.html')">
-            <i class="fas fa-th-list mr-2"></i>Person List
+        <button type="button" class="btn btn-outline-light" id="button-list">
+            <i class="fas fa-th-list mr-2"></i><span>Person List</span>
         </button>
-        <button type="button" class="btn btn-outline-light" onclick="setSource('nacarta-map.html')">
-            <i class="fas fa-map-marker mr-2"></i>Locations Map
+        <button type="button" class="btn btn-outline-light" id="button-map">
+            <i class="fas fa-map-marker mr-2"></i><span>Locations Map</span>
         </button>
     </div>
     <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Show links">
         <!-- add buttons for your brand here -->
-        <a role="button" class="btn btn-outline-secondary" href="https://github.com/ruempel/nacarta">
-            <i class="fab fa-github mr-2"></i>nacarta on GitHub</a>
+        <a role="button" class="btn btn-outline-secondary" id="button-github" href="https://github.com/ruempel/nacarta">
+            <i class="fab fa-github mr-2"></i><span>nacarta on GitHub</span></a>
     </div>
 </header>
 <iframe id="content" src="nacarta-chart.html"></iframe>
