@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="105.19999mm"
+   height="105.19999mm"
+   viewBox="0 0 105.19999 105.19999"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="nacarta-icon.svg"
+   inkscape:export-xdpi="23.222858"
+   inkscape:export-ydpi="23.222858">
+  <title
+     id="title4545">nacarta Icon</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="24.158745"
+     inkscape:cy="159.6353"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0.1"
+     fit-margin-left="0.1"
+     fit-margin-right="0.1"
+     fit-margin-bottom="0.1"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="1272"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>nacarta Icon</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Andreas Rümpel &lt;ruempel@gmail.com&gt;</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-52.524287,-43.900988)">
+    <circle
+       style="opacity:1;fill:#222222;fill-opacity:1;stroke:#8bc34a;stroke-width:5;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path4506"
+       cx="105.12428"
+       cy="96.500984"
+       r="49.999996" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:5.29166651px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#aaaaaa;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="84.741447"
+       y="116.39124"
+       id="text824-3"><tspan
+         sodipodi:role="line"
+         id="tspan822-6"
+         x="84.741447"
+         y="116.39124"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:63.5px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web Semi-Bold';fill:#aaaaaa;fill-opacity:1;stroke-width:0.26458332px">∗</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.57777786px;line-height:5.29166651px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#aaaaaa;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="127.018"
+       y="119.64686"
+       id="text824-3-7"><tspan
+         sodipodi:role="line"
+         id="tspan822-6-3"
+         x="127.018"
+         y="119.64686"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:63.5px;font-family:'Titillium Web';-inkscape-font-specification:'Titillium Web Semi-Bold';fill:#aaaaaa;fill-opacity:1;stroke-width:0.26458332px">✝</tspan></text>
+  </g>
+</svg>
