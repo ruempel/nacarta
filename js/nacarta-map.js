@@ -45,8 +45,9 @@ function loadPersons() {
         const locationsUncached = [];
         for (const locationRaw of locationsUnique) {
             const location = locationRaw.trim().replace(/\?/, "");
-            if (geocodeCache.hasOwnProperty(location)) {
-                const latlng = new google.maps.LatLng(geocodeCache[location].lat, geocodeCache[location].lng);
+            const found = geocodeCache.find(element => element.name === location);
+            if (found) {
+                const latlng = new google.maps.LatLng(found.lat, found.lng);
                 handleLocation(latlng, location);
             }
             else locationsUncached.push(location);
