@@ -8,7 +8,13 @@
 ![Views of nacarta showing a fictional example family](images/nacarta-views-screenshot.png)
 
 # How to Use
-**nacarta** comes as a static Web application. Thus, an HTTP server and a Web browser are required. Alternatively, you can also use a built-in Web server of your favorite Web IDE. Point your Web browser to `index.html`. It will provide access to the views with the relations chart loaded per default. A live demonstration with the data of a fictional example family runs at: https://andreasruempel.de/nacarta
+**nacarta** comes as a static Web application. Thus, an HTTP server and a Web browser are required. You may serve the application using an `nginx` `docker` image:
+
+```
+docker run -d --rm --name web --mount type=bind,source="$(pwd)",target=/usr/share/nginx/html -p 80:80 nginx:alpine
+```
+
+Point your Web browser to `index.html`, in case of the `docker` example, it is located at `http://localhost`. It will provide access to the views with the relations chart loaded per default. A live demonstration with the data of a fictional example family runs at: https://andreasruempel.de/nacarta
 
 Configuration is done within `js/nacarta-config.js`. First of all, you may configure the JSON database `files` containing the data of persons. The value of `basePath` is prepended to each file name. The extension `.json` is appended automatically. The sex of `ego` is specified by setting the boolean value of `egoMale`. To use the map, `mapsKey` for using the geocoding API must be configured. Obtain your own key using the [API Credentials](https://console.cloud.google.com/apis/credentials) of Google Cloud Console. Please cache successfully resolved locations in `js/geocode-cache.js` as suggested by the log outputs in the JavaScript console.
 
