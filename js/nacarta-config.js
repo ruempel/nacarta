@@ -3,7 +3,7 @@
  * nacarta application configuration
  *
  * @author Andreas Rümpel <ruempel@gmail.com>
- * @see https://developers.google.com/maps/documentation/javascript/get-api-key
+ * @see https://cloud.google.com/docs/authentication/api-keys
  */
 const basePath = "data/"; // prefix for files
 const files = ["example-core", "example-extension"]; // array of data files (without .json extension)
