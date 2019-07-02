@@ -14,16 +14,14 @@
 
         // access wrapper to allow Google API to find callback function inside JS module
         window.initMap = function () {
-            NacartaMap.init();
+            NacartaMap.initMap();
         };
 
-        // load configuration
-        jQuery.getJSON("./config/app.json").then(appConfig => { // load app config
-            NacartaMap.config = appConfig;
+        NacartaMap.init(() => {
             jQuery.getJSON("./config/geocode-cache.json").then(geocodeCache => { // load geocode cache
-                NacartaMap.geocodeCache = geocodeCache;
+                NacartaMap.geocodeCache = geocodeCache; // TODO geocode cache can be loaded later
                 const src = "https://maps.google.com/maps/api/js?key="
-                    + NacartaMap.config.mapsKey + "&callback=initMap";
+                    + NacartaMap.mapsKey + "&callback=initMap";
                 jQuery("<script/>").attr({src: src, defer: "defer"}).appendTo("head"); // load Google Maps API
             });
         });

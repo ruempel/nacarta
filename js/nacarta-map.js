@@ -1,4 +1,5 @@
 "use strict";
+import Nacarta from "./nacarta.js";
 
 /**
  * Provides nacarta map application logic.
@@ -6,12 +7,17 @@
  * @author Andreas Rümpel <ruempel@gmail.com>
  */
 export default class NacartaMap {
+    static init(callback) {
+        Nacarta.init(() => {
+            NacartaMap.mapsKey = Nacarta.config.mapsKey;
+            callback();
+        });
+    }
+
     /**
      * Initializes Google map.
      */
-    static init() {
-        // init common data structures
-        NacartaMap.persons = [];
+    static initMap() {
         NacartaMap.locations = [];
 
         // init map-specific data structures
@@ -24,26 +30,14 @@ export default class NacartaMap {
         NacartaMap.map = new google.maps.Map(canvas.get(0), mapOptions);
         NacartaMap.bb = new google.maps.LatLngBounds();
 
-        NacartaMap.loadPersons(NacartaMap.processMap);
-    }
-
-    /**
-     * Collects locations of persons database.
-     */
-    static loadPersons(callback) {
-        const promises = [];
-        for (const file of NacartaMap.config.files)
-            promises.push(jQuery.getJSON(NacartaMap.config.basePath + file + ".json",
-                data => NacartaMap.persons.push(...data)));
-
-        Promise.all(promises).then(callback); // wait for all JSON files processed
+        Nacarta.init(NacartaMap.processMap);
     }
 
     /**
      * Renders markers for each event location on a map.
      */
     static processMap() {
-        for (const person of NacartaMap.persons) { // collect locations from events
+        for (const person of Nacarta.persons) { // collect locations from events
             if (person.birth && person.birth.location) NacartaMap.locations.push(person.birth.location);
             if (person.death && person.death.location) NacartaMap.locations.push(person.death.location);
             // TODO make birth and death locations selectable individually
