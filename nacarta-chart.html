@@ -7,12 +7,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
             crossorigin="anonymous"></script>
-    <script src="js/nacarta-config.js"></script>
-    <script src="js/nacarta.js"></script>
-    <script>
-        jQuery(() => {
-            loadPersons(processDataToChart);
-        });
+    <script type="module">
+        "use strict";
+        import Nacarta from "./js/nacarta.js";
+
+        Nacarta.loadPersons(Nacarta.processDataToChart);
     </script>
     <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
 </head>

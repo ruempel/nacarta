@@ -1,0 +1,12 @@
+{
+  "basePath": "data/",
+  "files": [
+    "example-core",
+    "example-extension"
+  ],
+  "filterIdentifier": "",
+  "egoMale": true,
+  "mapsKey": "",
+  "authorName": "Author unknown",
+  "authorLocation": ""
+}

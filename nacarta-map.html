@@ -7,10 +7,27 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
             crossorigin="anonymous"></script>
-    <script src="js/geocode-cache.js"></script>
-    <script src="js/nacarta-config.js"></script>
-    <script src="js/nacarta-map.js"></script>
     <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <script type="module">
+        "use strict";
+        import NacartaMap from "./js/nacarta-map.js";
+
+        // access wrapper to allow Google API to find callback function inside JS module
+        window.initMap = function () {
+            NacartaMap.init();
+        };
+
+        // load configuration
+        jQuery.getJSON("./config/app.json").then(appConfig => { // load app config
+            NacartaMap.config = appConfig;
+            jQuery.getJSON("./config/geocode-cache.json").then(geocodeCache => { // load geocode cache
+                NacartaMap.geocodeCache = geocodeCache;
+                const src = "https://maps.google.com/maps/api/js?key="
+                    + NacartaMap.config.mapsKey + "&callback=initMap";
+                jQuery("<script/>").attr({src: src, defer: "defer"}).appendTo("head"); // load Google Maps API
+            });
+        });
+    </script>
 </head>
 
 <body>

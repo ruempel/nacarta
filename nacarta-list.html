@@ -20,14 +20,12 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
           integrity="sha384-1UXhfqyOyO+W+XsGhiIFwwD3hsaHRz2XDGMle3b8bXPH5+cMsXVShDoHA3AH/y/p" crossorigin="anonymous">
-    <script src="js/nacarta-config.js"></script>
-    <script src="js/nacarta.js"></script>
     <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
-    <script>
+    <script type="module">
         "use strict";
-        jQuery(() => {
-            loadPersons(processDataToTable);
-        });
+        import Nacarta from "./js/nacarta.js";
+
+        Nacarta.loadPersons(Nacarta.processDataToTable);
     </script>
 </head>
 <body>
