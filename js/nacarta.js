@@ -264,19 +264,17 @@ export default class Nacarta {
         box.addClass(Nacarta.determineSex(person.id)); // handle box color based on sex
         box.addClass(Nacarta.determineAliveStatus(person));
 
-        // handle events
-        const birth = Nacarta.stringifyEvent(person.birth);
-        const death = Nacarta.stringifyEvent(person.death);
-        const marriage = Nacarta.stringifyEvent(person.marriage);
-        const baptism = Nacarta.stringifyEvent(person.baptism);
-        if (birth)
-            jQuery("<div/>").addClass("event").text(`∗ ${birth}`).appendTo(box);
-        if (death)
-            jQuery("<div/>").addClass("event").text(`✝ ${death}`).appendTo(box);
-        if (marriage)
-            jQuery("<div/>").addClass("event").text(`⚭ ${marriage}`).appendTo(box);
-        if (baptism)
-            jQuery("<div/>").addClass("event").text(`≈ ${baptism}`).appendTo(box);
+        const events = [
+            {symbol: "∗", data: person.birth},
+            {symbol: "✝", data: person.death},
+            {symbol: "⚭", data: person.marriage},
+            {symbol: "≈", data: person.baptism}
+        ];
+
+        for (const event of events) {
+            if (event.data) jQuery("<div/>").addClass("event")
+                .text(`${event.symbol} ${Nacarta.stringifyEvent(event.data)}`).appendTo(box);
+        }
 
         // handle occupation and info
         let occupation = person.occupation;
