@@ -1,14 +1,21 @@
 {
-  "name": "nacarta",
+  "name": "nacarta: Visual Genealogy Data Exploration",
+  "short_name": "nacarta",
   "icons": [
     {
       "src": "images/nacarta-icon-96.png",
       "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/nacarta-icon-144.png",
+      "sizes": "144x144",
       "type": "image/png"
     }
   ],
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#333333"
+  "background_color": "#333333",
+  "theme_color": "#cccccc"
 }
