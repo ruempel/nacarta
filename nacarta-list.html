@@ -3,34 +3,33 @@
 <head>
     <title>nacarta Person List</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    <meta content="initial-scale=1.0, user-scalable=no" name="viewport"/>
+    <script crossorigin="anonymous"
             integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script crossorigin="anonymous"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+    <script crossorigin="anonymous"
             integrity="sha384-rgWRqC0OFPisxlUvl332tiM/qmaNxnlY46eksSZD84t+s2vZlqGeHrncwIRX7CGp"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
-          integrity="sha384-1UXhfqyOyO+W+XsGhiIFwwD3hsaHRz2XDGMle3b8bXPH5+cMsXVShDoHA3AH/y/p" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+            src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link crossorigin="anonymous" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+          integrity="sha384-1UXhfqyOyO+W+XsGhiIFwwD3hsaHRz2XDGMle3b8bXPH5+cMsXVShDoHA3AH/y/p" rel="stylesheet">
+    <link href="css/nacarta.css" rel="stylesheet" type="text/css"/>
     <script type="module">
-        "use strict";
-        import NacartaChart from "./js/nacarta-chart.js";
+        import NacartaChart from './js/nacarta-chart.js';
 
         NacartaChart.init(NacartaChart.processDataToTable);
     </script>
 </head>
 <body>
 <section class="container-fluid my-2">
-    <table id="persons" class="table table-hover table-condensed">
+    <table class="table table-hover table-condensed" id="persons">
         <thead>
         <tr>
             <th>ID</th>

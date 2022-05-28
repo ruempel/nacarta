@@ -3,17 +3,16 @@
 <head>
     <title>nacarta Relations Chart</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+    <script crossorigin="anonymous"
             integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
-            crossorigin="anonymous"></script>
+            src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="module">
-        "use strict";
-        import NacartaChart from "./js/nacarta-chart.js";
+        import NacartaChart from './js/nacarta-chart.js';
 
         NacartaChart.init(NacartaChart.processDataToChart);
     </script>
-    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <link href="css/nacarta.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body id="chart">
