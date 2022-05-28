@@ -1,6 +1,5 @@
-"use strict";
 /**
- * Configuration and person database contaner and loader.
+ * Configuration and person database container and loader.
  *
  * @author Andreas Rümpel <ruempel@gmail.com>
  */
@@ -38,20 +37,21 @@ export default class Nacarta {
      */
 
     /**
-     * Loads persons from a set of JSON files and initiates processing and rendering.
+     * Load persons from a set of JSON files and initiate processing and rendering.
      *
      * @param {loadPersonsCallback} callback function to execute as soon as all persons are loaded
      */
     static init(callback) {
-        jQuery.getJSON("./config/app.json").then(appConfig => { // load app config
-            Nacarta.config = appConfig; // application config loaded from file
+        fetch('./config/app.json').then(async appConfig => { // load app config
+            Nacarta.config = await appConfig.json(); // application config loaded from file
             Nacarta.persons = []; // array of person objects
 
             // load persons from database
             const promises = [];
-            for (const file of Nacarta.config.files)
-                promises.push(jQuery.getJSON(Nacarta.config.basePath + file + ".json",
-                    data => Nacarta.persons.push(...data)));
+            for (const file of Nacarta.config.files) {
+                promises.push(fetch(Nacarta.config.basePath + file + ".json")
+                    .then(async data => Nacarta.persons.push(...await data.json())));
+            }
             Promise.all(promises).then(callback);
         });
     }
