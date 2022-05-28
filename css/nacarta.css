@@ -39,6 +39,7 @@ header button {
     background-color: transparent;
     border-color: #ccc;
     color: #ccc;
+    transition: background-color 200ms linear;
 }
 
 header button:hover {
