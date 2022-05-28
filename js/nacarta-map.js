@@ -1,5 +1,4 @@
-"use strict";
-import Nacarta from "./nacarta.js";
+import Nacarta from './nacarta.js';
 
 /**
  * Provides nacarta map application logic.

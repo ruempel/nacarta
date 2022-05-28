@@ -1,5 +1,4 @@
-"use strict";
-import Nacarta from "./nacarta.js";
+import Nacarta from './nacarta.js';
 
 /**
  * Provides application logic for statistics computing over person database.
