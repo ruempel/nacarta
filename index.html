@@ -3,68 +3,63 @@
 <head>
     <title>nacarta</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-    <link rel="manifest" href="manifest.json"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css"
-          integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+    <link href="manifest.json" rel="manifest"/>
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+    <link href="css/nacarta.css" rel="stylesheet" type="text/css"/>
     <script>
-        "use strict";
-        jQuery(() => {
+        if (document.readyState === 'loading') {  // loading hasn't finished yet
+            document.addEventListener('DOMContentLoaded', init);
+        } else { // `DOMContentLoaded` has already fired
+            init();
+        }
+
+        function init() {
             for (const target of ["chart", "list", "map"]) { // enable button links
-                jQuery(`#button-${target}`).click(() => {
-                    document.getElementById("content").setAttribute("src", `nacarta-${target}.html`);
-                });
+                document.querySelector(`#button-${target}`).addEventListener('click', () =>
+                    document.getElementById("content").setAttribute("src", `nacarta-${target}.html`));
             }
 
-            function adaptLayout() { // trim button texts on viewports with low width
-                if (jQuery(window).width() < 800) {
-                    jQuery("#button-chart").find("span").html("Chart");
-                    jQuery("#button-list").find("span").html("List");
-                    jQuery("#button-map").find("span").html("Map");
-                    jQuery("#button-github").find("span").html("nacarta");
-                } else {
-                    jQuery("#button-chart").find("span").html("Relations Chart");
-                    jQuery("#button-list").find("span").html("Person List");
-                    jQuery("#button-map").find("span").html("Locations Map");
-                    jQuery("#button-github").find("span").html("nacarta on GitHub");
-                }
-            }
-
-            jQuery(window).resize(adaptLayout); // register layout adaptation listener
+            window.onresize = adaptLayout; // register layout adaptation listener
             adaptLayout();
-        });
+        }
+
+        function adaptLayout() { // trim button texts on viewports with low width
+            const labels = [
+                {selector: 'chart', short: 'Chart', long: 'Relations Chart'},
+                {selector: 'list', short: 'List', long: 'Person List'},
+                {selector: 'map', short: 'Map', long: 'Locations Map'},
+                {selector: 'github', short: 'nacarta', long: 'nacarta on GitHub'}
+            ];
+
+            if (window.innerWidth < 800) {
+                labels.forEach(label =>
+                    document.querySelector(`#button-${label.selector} span`).innerHTML = label.short);
+            } else {
+                labels.forEach(label =>
+                    document.querySelector(`#button-${label.selector} span`).innerHTML = label.long);
+            }
+        }
     </script>
 </head>
 <body>
-<header class="py-1">
-    <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Switch view buttons">
-        <button type="button" class="btn btn-outline-light" id="button-chart">
-            <i class="fas fa-th-large mr-2"></i><span>Relations Chart</span>
+<header>
+    <button id="button-chart" type="button">
+        <i class="fas fa-th-large"></i><span>Relations Chart</span>
+    </button>
+    <button id="button-list" type="button">
+        <i class="fas fa-th-list"></i><span>Person List</span>
+    </button>
+    <button id="button-map" type="button">
+        <i class="fas fa-map-marker"></i><span>Locations Map</span>
+    </button>
+    <form action="https://github.com/ruempel/nacarta">
+        <button id="button-github" type="submit">
+            <i class="fab fa-github"></i><span>nacarta on GitHub</span>
         </button>
-        <button type="button" class="btn btn-outline-light" id="button-list">
-            <i class="fas fa-th-list mr-2"></i><span>Person List</span>
-        </button>
-        <button type="button" class="btn btn-outline-light" id="button-map">
-            <i class="fas fa-map-marker mr-2"></i><span>Locations Map</span>
-        </button>
-    </div>
-    <div class="btn-group btn-group-sm mx-2" role="group" aria-label="Show links">
-        <!-- add buttons for your brand here -->
-        <a role="button" class="btn btn-outline-secondary" id="button-github" href="https://github.com/ruempel/nacarta">
-            <i class="fab fa-github mr-2"></i><span>nacarta on GitHub</span></a>
-    </div>
+    </form>
 </header>
 <iframe id="content" src="nacarta-chart.html"></iframe>
 </body>

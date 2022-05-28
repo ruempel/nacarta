@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Titillium+Web:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Roboto:wght@400;700&display=swap');
 
 :root {
     --dark-background-border-color: #696969;
-    --font: "Titillium Web", sans-serif;
+    --font: 'Roboto', sans-serif;
     --content-offset: 2.5rem;
 }
 
@@ -20,8 +20,33 @@ html {
     font-size: 16px; /* ensure rem base value */
 }
 
-button {
+header {
+    background-color: #393939;
+    height: var(--content-offset);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+header button {
     font-family: var(--font);
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: transparent;
+    border-color: #ccc;
+    color: #ccc;
+}
+
+header button:hover {
+    background-color: #666;
+}
+
+header button > i {
+    margin-right: 0.5rem;
 }
 
 iframe#content {
@@ -30,12 +55,6 @@ iframe#content {
     position: absolute;
     top: var(--content-offset);
     left: 0;
-}
-
-header {
-    background-color: #393939;
-    height: var(--content-offset);
-    text-align: center;
 }
 
 #chart {
@@ -74,6 +93,7 @@ header {
 }
 
 .name {
+    padding: 2px;
     color: white;
     background-color: var(--dark-background-border-color);
 }
