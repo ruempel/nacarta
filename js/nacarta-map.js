@@ -25,8 +25,10 @@ export default class NacartaMap {
             center: new google.maps.LatLng(51.051, 13.735),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        const canvas = jQuery("<div>").attr({id: "map-canvas"}).appendTo("body");
-        NacartaMap.map = new google.maps.Map(canvas.get(0), mapOptions);
+        const canvas = document.createElement('div');
+        canvas.setAttribute('id', 'map-canvas');
+        document.querySelector('body').appendChild(canvas);
+        NacartaMap.map = new google.maps.Map(canvas, mapOptions);
         NacartaMap.bb = new google.maps.LatLngBounds();
 
         Nacarta.init(NacartaMap.processMap);

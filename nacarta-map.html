@@ -3,14 +3,10 @@
 <head>
     <title>nacarta Locations Map</title>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="css/nacarta.css"/>
+    <meta content="initial-scale=1.0, user-scalable=no" name="viewport"/>
+    <link href="css/nacarta.css" rel="stylesheet" type="text/css"/>
     <script type="module">
-        "use strict";
-        import NacartaMap from "./js/nacarta-map.js";
+        import NacartaMap from './js/nacarta-map.js';
 
         // access wrapper to allow Google API to find callback function inside JS module
         window.initMap = function () {
@@ -18,11 +14,14 @@
         };
 
         NacartaMap.init(() => {
-            jQuery.getJSON("./config/geocode-cache.json").then(geocodeCache => { // load geocode cache
-                NacartaMap.geocodeCache = geocodeCache; // TODO geocode cache can be loaded later
+            fetch('./config/geocode-cache.json').then(async geocodeCache => { // load geocode cache
+                NacartaMap.geocodeCache = await geocodeCache.json(); // TODO geocode cache can be loaded later
                 const src = "https://maps.google.com/maps/api/js?key="
                     + NacartaMap.mapsKey + "&callback=initMap";
-                jQuery("<script/>").attr({src: src, defer: "defer"}).appendTo("head"); // load Google Maps API
+                const script = document.createElement('script');
+                script.setAttribute('src', src);
+                script.setAttribute('defer', 'defer');
+                document.querySelector('head').appendChild(script); // load Google Maps API
             });
         });
     </script>
