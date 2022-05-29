@@ -1,7 +1,7 @@
 import Nacarta from './nacarta.js';
 
 /**
- * Provides application logic for nacarta chart and list views.
+ * Provide application logic for nacarta chart and list views.
  *
  * @author Andreas Rümpel <ruempel@gmail.com>
  */
@@ -11,7 +11,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Renders a mixed SVG and HTML chart of the persons provided as well as relations between them.
+     * Render a mixed SVG and HTML chart of the persons provided as well as relations between them.
      */
     static processDataToChart() {
         NacartaChart.generations = new Map(); // person array for each generation integer
@@ -44,14 +44,14 @@ export default class NacartaChart {
 
         NacartaChart.setParentLinks();
         NacartaChart.setChildAndPartnerLinks();
-        NacartaChart.createGlobalContainers();
+        NacartaChart.linkCanvas = document.querySelector('#link-canvas');
         NacartaChart.createRowsAndBoxes();
         NacartaChart.centerGenerations();
         console.info(NacartaChart.statistics);
     }
 
     /**
-     * Filters persons such that the result set contains only persons leading to the filter person
+     * Filter persons such that the result set contains only persons leading to the filter person
      * and persons derived from the filter person.
      */
     static filterPersons() {
@@ -66,7 +66,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Compares person identifiers.
+     * Compare person identifiers.
      *
      * @param {Person} a first person
      * @param {Person} b second person
@@ -74,15 +74,15 @@ export default class NacartaChart {
      */
     static comparePersonByID(a, b) {
         // person with prefix right, if connection via father
-        if (a.id.startsWith(b.id) && a.id.substr(b.id.length).startsWith("f"))
+        if (a.id.startsWith(b.id) && a.id.substring(b.id.length).startsWith("f"))
             return -1;
-        if (b.id.startsWith(a.id) && b.id.substr(a.id.length).startsWith("f"))
+        if (b.id.startsWith(a.id) && b.id.substring(a.id.length).startsWith("f"))
             return 1;
         return NacartaChart.makeIDComparable(a.id).localeCompare(NacartaChart.makeIDComparable(b.id));
     }
 
     /**
-     * Rewrites an identifier to bring it in the proper order for string comparison.
+     * Rewrite an identifier to set up the proper order for string comparison.
      *
      * @param {string} id person identifier as specified in the database
      * @returns {string} rewritten identifier to be compared by default string comparison
@@ -102,7 +102,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Provides an integer generation of a given person. Ego generation is 0. The generation of the parents of ego is 1.
+     * Provide an integer generation of a given person. Ego generation is 0. The generation of the parents of ego is 1.
      *
      * @param {Person} person family member
      * @returns {number} integer generation
@@ -117,13 +117,13 @@ export default class NacartaChart {
                 generation++;
             if (generationsID.startsWith("s") || generationsID.startsWith("d"))
                 generation--;
-            generationsID = generationsID.substr(1);
+            generationsID = generationsID.substring(1);
         }
         return generation;
     }
 
     /**
-     * Connects person objects with parent links recursively.
+     * Connect person objects with parent links recursively.
      *
      * @param {Person} [person] family member to be augmented with connections
      */
@@ -143,7 +143,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Connects person objects with child and partner links.
+     * Connect person objects with child and partner links.
      */
     static setChildAndPartnerLinks() {
         for (const [, persons] of NacartaChart.generations)
@@ -174,51 +174,58 @@ export default class NacartaChart {
     }
 
     /**
-     * Sets up render containers as DOM elements.
-     */
-    static createGlobalContainers() {
-        jQuery("<div/>").attr({id: "generations"}).appendTo("body");
-        NacartaChart.linkCanvas = jQuery("#link-canvas");
-    }
-
-    /**
-     * Renders a box as DOM element for each person object. Organizes them in rows aka. generations.
+     * Render a box as DOM element for each person object. Organizes them in rows aka. generations.
      */
     static createRowsAndBoxes() {
         NacartaChart.statistics.numberOfOldestGeneration = Math.max(...Array.from(NacartaChart.generations.keys()));
         for (const [generation, persons] of NacartaChart.generations) {
-            const row = jQuery("<div>").addClass("generation").attr({id: `generation-${generation}`});
+            const row = document.createElement('div');
+            row.classList.add('generation');
+            row.setAttribute('id', `generation-${generation}`);
             const topOffset = NacartaChart.globalYOffset
                 + (NacartaChart.statistics.numberOfOldestGeneration - generation) * NacartaChart.generationsOffset;
-            row.css("top", topOffset + "px");
-            row.appendTo("#generations");
+            row.style.setProperty('top', `${topOffset}px`);
+            document.querySelector('#generations').appendChild(row);
 
             for (const person of persons) {
-                const box = jQuery("<div>").addClass("box").attr({id: `box-${person.id}`});
+                const box = document.createElement('div');
+                box.classList.add('box');
+                box.setAttribute('id', `box-${person.id}`);
                 NacartaChart.fillBox(box, person);
-                box.appendTo(row);
+                row.appendChild(box);
             }
         }
     }
 
     /**
-     * Fills a person box with data.
+     * Fill a person box with data.
      *
-     * @param {jQuery} box person box
+     * @param {HTMLElement} box person box
      * @param {Person} person family member
      */
     static fillBox(box, person) {
-        box.data("person", person); // save reference to person in box
         // handle names
         let firstnames = person.firstnames;
         firstnames = firstnames.replace(/\[([^\]]+)]/g, "<span class='optional'>$1</span>");
-        jQuery("<div/>").addClass("name").html(firstnames + " " + person.name).appendTo(box);
+
+        const nameElement = document.createElement('div');
+        nameElement.classList.add('name');
+        nameElement.innerHTML = firstnames + " " + person.name;
+        box.appendChild(nameElement);
+
         let birthnameAndID = (person.birthname === undefined ? "" : "∗&nbsp;" + person.birthname + " · ");
         birthnameAndID += (person.id === "" ? "ego" : person.id); // replace ego id
-        jQuery("<div/>").addClass("id").html(birthnameAndID).appendTo(box);
 
-        box.addClass(NacartaChart.determineSex(person.id)); // handle box color based on sex
-        box.addClass(NacartaChart.determineAliveStatus(person));
+        const birthNameAndIDElement = document.createElement('div');
+        birthNameAndIDElement.classList.add('id');
+        birthNameAndIDElement.innerHTML = birthnameAndID;
+        box.appendChild(birthNameAndIDElement);
+
+        const sex = NacartaChart.determineSex(person.id);
+        if (sex !== '') {
+            box.classList.add(sex); // handle box color based on sex
+        }
+        box.classList.add(NacartaChart.determineAliveStatus(person));
 
         const events = [
             {symbol: "∗", data: person.birth},
@@ -228,24 +235,38 @@ export default class NacartaChart {
         ];
 
         for (const event of events) {
-            if (event.data) jQuery("<div/>").addClass("event")
-                .text(`${event.symbol} ${NacartaChart.stringifyEvent(event.data)}`).appendTo(box);
+            if (event.data) {
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('event');
+                eventElement.textContent = `${event.symbol} ${NacartaChart.stringifyEvent(event.data)}`;
+                box.appendChild(eventElement);
+            }
         }
 
         // handle occupation and info
         let occupation = person.occupation;
-        if (occupation)
-            jQuery("<div/>").addClass("info").text(occupation).appendTo(box);
+        if (occupation) {
+            const occupationElement = document.createElement('div');
+            occupationElement.classList.add('info');
+            occupationElement.textContent = occupation;
+            box.appendChild(occupationElement);
+        }
         const info = person.info;
-        if (info)
-            jQuery("<div/>").addClass("info").text(info).appendTo(box);
+        if (info) {
+            const infoElement = document.createElement('div');
+            infoElement.classList.add('info');
+            infoElement.textContent = info;
+            box.appendChild(infoElement);
+        }
 
         // decoration
-        if (NacartaChart.isLinear(person)) box.addClass("linear");
+        if (NacartaChart.isLinear(person)) {
+            box.classList.add('linear');
+        }
     }
 
     /**
-     * Renders all persons into a table with one row for each person.
+     * Render all persons into a table with one row for each person.
      */
     static processDataToTable() {
         NacartaChart.statistics = {
@@ -285,7 +306,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Determines whether a person is male, female or a partner with no relevance to determine sex.
+     * Determine whether a person is male, female or a partner with no relevance to determine sex.
      *
      * @param {string} id person's id
      * @returns {string} "male", "female" or ""
@@ -305,7 +326,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Determines whether a person is alive or dead. The decision is based on a present or missing death event.
+     * Determine whether a person is alive or dead. The decision is based on a present or missing death event.
      *
      * @param {Person} person person to determine the alive status of
      * @returns {string} "alive" or "dead"
@@ -316,7 +337,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Stringifies a given event object (birth, death, baptism or marriage).
+     * Stringify a given event object (birth, death, baptism or marriage).
      *
      * @param {Object} event object specifying the event's time and location
      * @param {string} event.day day of the month in which the event happened
@@ -342,7 +363,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Determines whether the given person is linearly related to ego.
+     * Determine whether the given person is linearly related to ego.
      *
      * @param {Person} person person to evaluate
      * @returns {boolean} true, if person is ancestor or descendant of ego or ego itself
@@ -353,7 +374,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Centers the whole diagram by animating the x offset for each row aka. generation.
+     * Center the whole diagram by animating the x offset for each row aka. generation.
      */
     static centerGenerations() {
         const generationWidths = new Map();
@@ -385,7 +406,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Renders links to ancestors recursively.
+     * Render links to ancestors recursively.
      *
      * @param {Person} person seed person, defaults to ego
      */
@@ -401,7 +422,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Renders links to ancestors for each person in each generation.
+     * Render links to ancestors for each person in each generation.
      */
     static renderParentLinksNaive() {
         for (const [, personsInGeneration] of NacartaChart.generations)
@@ -416,7 +437,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Draws an SVG (Scalable Vector Graphics) curve.
+     * Draw an SVG (Scalable Vector Graphics) curve.
      *
      * @param {jQuery} upper parent object
      * @param {jQuery} lower child object
@@ -444,7 +465,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Renders links to all children and partners.
+     * Render links to all children and partners.
      */
     static renderChildAndPartnerLinks() {
         for (const [, persons] of NacartaChart.generations)
@@ -460,7 +481,7 @@ export default class NacartaChart {
     }
 
     /**
-     * Draws an SVG curve.
+     * Draw an SVG curve.
      *
      * @param {jQuery} person relative having a partner
      * @param {jQuery} partner partner of the relative
